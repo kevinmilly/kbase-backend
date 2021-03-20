@@ -1,4 +1,4 @@
-const Task = require('../backend/models/Tasks');
+const Task = require('../models/Tasks');
 
 exports.addTask = (req,res,next) => {
     const task = new Task({
@@ -26,7 +26,7 @@ exports.getTasks =  (req,res,next)=> {
 }
 
 
-exports.editTasks = (req,res,next) => {
+exports.editTask = (req,res,next) => {
     const task = new Task({
         _id: req.body.id,
         title:req.body.title,
@@ -38,7 +38,10 @@ exports.editTasks = (req,res,next) => {
         completed: req.body.completed,
 
       })
-       Task.update({_id: Task.id}, Task, {upsert: true}, function(err{...});
+       Task.update({_id: Task.id}, Task, {upsert: true}, function(err, doc) {
+        if (err) return res.send(500, {error: err});
+        return res.send('Succesfully saved.');
+    });
 }
 
 

@@ -20,7 +20,7 @@ module.exports = function(app) {
     
     app.delete("/api/concepts/:id", concept.deleteConcept);
 
-    app.edit("/api/concepts/:id", concept.editConcept);
+    app.put("/api/concepts/:id", concept.editConcept);
 
 
     //Tasks
@@ -32,6 +32,6 @@ module.exports = function(app) {
     
     app.delete("/api/tasks/:id", task.deleteTask);
 
-    app.edit("/api/tasks/:id", task.editTask);
+    app.put("/api/tasks/:id", task.editTask);
 
 }

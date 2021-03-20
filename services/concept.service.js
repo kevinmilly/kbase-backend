@@ -1,4 +1,4 @@
-const Concept = require('../backend/models/concepts');
+const Concept = require('../models/concepts');
 
 exports.addConcept = (req,res,next) => {
     const concept = new Concept({
@@ -26,7 +26,7 @@ exports.getConcepts =  (req,res,next)=> {
 }
 
 
-exports.editConcepts = (req,res,next) => {
+exports.editConcept = (req,res,next) => {
     const concept = new Concept({
         _id: req.body.id,
         title:req.body.title,
@@ -38,7 +38,10 @@ exports.editConcepts = (req,res,next) => {
         completed: req.body.completed,
 
       })
-       Concept.update({_id: concept.id}, concept, {upsert: true}, function(err{...});
+       Concept.updateOne({_id: concept.id}, concept, {upsert: true}, function(err, doc) {
+        if (err) return res.send(500, {error: err});
+        return res.send('Succesfully saved.');
+    });
 }
 
 
