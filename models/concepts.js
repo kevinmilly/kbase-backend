@@ -9,7 +9,7 @@ const conceptSchema = mongoose.Schema({
     level:{type:Number, default:0},
     completed:{type:Boolean, default:false},
     tag:{type:String, default:false},
-    details: {type: String, required:false}
+    notes: {type: String, required:false}
 
 
 })

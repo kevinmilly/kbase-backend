@@ -9,7 +9,9 @@ module.exports = function(app) {
 	// route to handle all angular requests
 
     const concept = require("./services/concept.service");
-    const task = require("./services/task.service");
+    const note = require("./services/note.service");
+    const resources = require("./services/resource.service");
+    const search = require("./services/g-search.service");
 
     //Concepts
     app.post("/api/concepts", concept.addConcept);
@@ -23,15 +25,30 @@ module.exports = function(app) {
     app.put("/api/concepts/:id", concept.editConcept);
 
 
-    //Tasks
-    app.post("/api/tasks", task.addTask);
+    //notes
+    app.post("/api/notes", note.addNote);
     
     
-    app.get('/api/tasks', task.getTasks);
+    app.get('/api/notes/:relatedConcept', note.getNotesByConcept);
     
     
-    app.delete("/api/tasks/:id", task.deleteTask);
+    app.delete("/api/notes/:id", note.deleteNote);
 
-    app.put("/api/tasks/:id", task.editTask);
+    app.put("/api/notes/:id", note.editNote);
+
+    //learning
+
+    app.get("/api/g-search/:term", search.getResults);
+
+    //resources
+    app.post("/api/resources", resources.addResource);
+
+
+    app.get('/api/resources/:relatedConcept', resources.getResourcesByConcept);
+    
+    
+    app.delete("/api/resources/:id", resources.deleteResource);
+
+    app.put("/api/resources/:id", resources.editResource);
 
 }

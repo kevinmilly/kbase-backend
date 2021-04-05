@@ -5,7 +5,8 @@ exports.addConcept = (req,res,next) => {
       title:req.body.title,
       resource:req.body.resource,
       difficulty: req.body.difficulty,
-      status: req.body.status
+      status: req.body.status,
+      notes: req.body.notes
     })
     concept.save();
     res.status(201).json({
@@ -16,7 +17,7 @@ exports.addConcept = (req,res,next) => {
 exports.getConcepts =  (req,res,next)=> {
     Concept.find()
     .then((documents) => {
-        console.log(documents);
+        // console.log(documents);
 
         res.status(200).json({
             message:"Concept has been fetched",
@@ -30,9 +31,9 @@ exports.editConcept = (req,res,next) => {
     const concept = new Concept({
         _id: req.body.id,
         title:req.body.title,
-        resource:req.body.resource,
         difficulty: req.body.difficulty,
         status: req.body.status,
+        notes: req.body.notes,
         dependentConcepts: req.body.dependentConcepts,
         relatedNotes: req.body.relatedNotes,
         completed: req.body.completed,
