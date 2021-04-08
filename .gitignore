@@ -1,8 +1,5 @@
-
-
-# dependencies
-node_modules
-
 .env
-
 env.js
+# dependencies
+node_modules/
+logs/
