@@ -1,6 +1,7 @@
 const Concept = require('../models/concepts');
 
 exports.addConcept = (req,res,next) => {
+    console.log("add concept on the backend");
     const concept = new Concept({
       title:req.body.title,
       resource:req.body.resource,
@@ -48,6 +49,8 @@ exports.editConcept = (req,res,next) => {
 
 
 exports.deleteConcept = (req, res, next) => {
-    console.log(req.params.id);
+    console.log("in delete");
+    console.dir(req);
+    Concept.find({id:req.body.id}).remove().exec();
     res.status(200).json({message: "Post deleted!"});
 }
