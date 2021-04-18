@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "google": "^2.1.0",
     "googleapis": "^70.0.0",
+    "mongoose": "^5.12.4",
     "node-fetch": "^2.6.1",
     "simple-youtube-api": "^5.2.1"
   }
