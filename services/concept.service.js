@@ -11,7 +11,7 @@ exports.addConcept = (req,res,next) => {
     concept.save();
     res.status(201).json(concept);
 }
-
+ 
 exports.getConcepts =  (req,res,next)=> {
     Concept.find()
     .then((documents) => {
