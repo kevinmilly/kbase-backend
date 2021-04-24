@@ -40,14 +40,14 @@ module.exports = function(app) {
     app.get("/api/g-search/:term", search.getResults);
 
     //resources
-    app.post("/api/resources", resources.addResource);
+    app.post("/api/resources", resources.addResources);
 
 
     app.get('/api/resources/:relatedConcept', resources.getResourcesByConcept);
     
     
-    app.delete("/api/resources/:resourceIds", resources.deleteResource);
+    app.delete("/api/resources/:id", resources.deleteResources);
 
-    app.put("/api/resources/:id", resources.editResource);
+    app.put("/api/resources/", resources.editResource);
 
 }

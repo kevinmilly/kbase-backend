@@ -49,7 +49,7 @@ exports.editResource = (req,res,next) => {
 
 
 
-exports.deleteResource = (req, res, next) => {
+exports.deleteResources = (req, res, next) => {
     console.dir(req.params.resourceIds);
     resourceIds.forEach( resourceId => {
         Resource.deleteOne({id:resourceId}, function (err) {
