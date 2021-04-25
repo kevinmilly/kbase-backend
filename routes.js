@@ -28,7 +28,7 @@ module.exports = function(app) {
     app.post("/api/notes", note.addNote);
     
     
-    app.get('/api/notes/:relatedConcept', note.getNotesByConcept);
+    app.get('/api/notes/:relatedConcept', note.getNotesByConcept); 
     
     
     app.delete("/api/notes/:id", note.deleteNote);
