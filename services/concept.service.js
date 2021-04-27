@@ -7,7 +7,6 @@ exports.addConcept = (req,res,next) => {
       level: req.body.level,
       tag: req.body.tag
     })
-    console.dir(concept);
     concept.save();
     res.status(201).json(concept);
 }
@@ -15,8 +14,6 @@ exports.addConcept = (req,res,next) => {
 exports.getConcepts =  (req,res,next)=> {
     Concept.find()
     .then((documents) => {
-        console.log(documents);
-
         res.status(200).json({
             message:"Concept has been fetched",
             concepts:documents
@@ -47,8 +44,6 @@ exports.editConcept = (req,res,next) => {
 
 
 exports.deleteConcept = (req, res, next) => {
-    console.log("in delete");
-    // console.dir(req);
     Concept.deleteOne({id:req.body.id}, function (err) {
         if(err) console.log(err);
         console.log("Successful deletion");

@@ -46,7 +46,7 @@ module.exports = function(app) {
     app.get('/api/resources/:relatedConcept', resources.getResourcesByConcept);
     
     
-    app.delete("/api/resources/:id", resources.deleteResources);
+    app.delete("/api/resources/", resources.deleteResources);
 
     app.put("/api/resources/", resources.editResource);
 

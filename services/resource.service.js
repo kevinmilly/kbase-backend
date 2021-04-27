@@ -2,17 +2,15 @@ const Resource = require('../models/resource');
 
 
 exports.addResources = (req,res,next) => {
-    console.dir(req.body);
     req.body.forEach(element => {
-          resource.save(
+          
             new Resource({
                 title:element.title, 
                 link:element.link,
                 level:element.level,
                 concept: element.concept,
                 type: element.type 
-              })
-          );
+              }).save();
     });
     res.status(201).json({
         message: 'Resource added successfully!'
@@ -22,8 +20,6 @@ exports.addResources = (req,res,next) => {
 exports.getResourcesByConcept =  (req,res,next)=> {
     Resource.find({"concept" : req.params.relatedConcept})
     .then((documents) => {
-        console.log(documents);
-
         res.status(200).json({
             message:"Resource have been fetched",
             resources:documents
@@ -52,9 +48,9 @@ exports.editResource = (req,res,next) => {
 
 
 exports.deleteResources = (req, res, next) => {
-    console.dir(req.params);
-    req.params.forEach( resourceId => {
-        Resource.deleteOne({id:resourceId}, function (err) {
+    console.dir(req.body);
+    req.body.forEach( resourceId => {
+        Resource.deleteOne({id:resourceId.id}, function (err) {
             if(err) console.log(err);
             console.log("Successful deletion");
           });
