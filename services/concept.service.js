@@ -23,21 +23,22 @@ exports.getConcepts =  (req,res,next)=> {
 
 
 exports.editConcept = (req,res,next) => {
+    console.dir(req.body);
     const concept = new Concept({
-        _id: req.body.id,
+        _id: req.body._id,
         title:req.body.title,
         necessity: req.body.necessity,
         level: req.body.level,
-        notes: req.body.notes,
-        dependentConcepts: req.body.dependentConcepts,
-        relatedNotes: req.body.relatedNotes,
-        completed: req.body.completed,
         tag: req.body.tag
 
       })
        Concept.updateOne({_id: concept.id}, concept, {upsert: true}, function(err, doc) {
         if (err) return res.send(500, {error: err});
-        return res.send('Succesfully saved.');
+        return  (
+            res.status(200).json({
+            message:"Concept udpated",
+            concept
+        }));
     });
 }
 

@@ -18,7 +18,7 @@ module.exports = function(app) {
     
     
     app.get('/api/concepts', concept.getConcepts);
-    
+     
     app.delete("/api/concepts/:id", concept.deleteConcept);
 
     app.put("/api/concepts/:id", concept.editConcept);
