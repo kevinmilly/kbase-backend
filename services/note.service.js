@@ -16,7 +16,7 @@ exports.addNote = (req,res,next) => {
 } 
 
 exports.getNotesByConcept =  (req,res,next)=> {
-    Note.find({"relatedConcept" : req.body.relatedConcept})
+    Note.find({"relatedConcept" : req.params.relatedConcept})
     .then((documents) => {
         console.log(documents);
 
