@@ -1,9 +1,8 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const env = require('./env.js');
-
-require('dotenv').config();
 
 
 const app = express();
@@ -34,9 +33,12 @@ mongoose.connect(`${uri}`)
 
 app.use(bodyParser.json());
 
+app.use("/", express.static(path.join(__dirname, "kbase")));
+
 app.use((req,res,next) => {
-    res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
     res.setHeader("Access-Control-Allow-Methods",
     "GET,POST,PUT,PATCH,DELETE,OPTIONS"
     );
@@ -47,6 +49,12 @@ app.use((req,res,next) => {
 // routes ==================================================
 require('./routes')(app); // pass our application into our routes
 
+
+   //frontend
+
+   app.use((req, res, next) => {
+       res.sendFile(path.join(__dirname, "kbase", "index.html"));
+   })
 
 
 module.exports = app;
