@@ -20,10 +20,6 @@ const cluster = env.cluster;
 const uri = `mongodb+srv://${user}:${pw}${cluster}`;
 
 
-
-
-console.log(uri);
-
 mongoose.connect(`${uri}`)
     .then(() => {
         console.log("Connected to the database!");
@@ -36,7 +32,7 @@ app.use(bodyParser.json());
 
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.setHeader("Access-Control-Allow-Methods",
     "GET,POST,PUT,PATCH,DELETE,OPTIONS"
     );
@@ -46,6 +42,7 @@ app.use((req,res,next) => {
 
 // routes ==================================================
 require('./routes')(app); // pass our application into our routes
+require('./user')(app); // pass our application into our routes
 
 
 

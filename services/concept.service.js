@@ -23,7 +23,7 @@ exports.getConcepts =  (req,res,next)=> {
 
 
 exports.editConcept = (req,res,next) => {
-    console.dir(req.body);
+
     const concept = new Concept({
         _id: req.body._id,
         title:req.body.title,

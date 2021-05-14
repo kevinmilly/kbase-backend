@@ -1,3 +1,5 @@
+const checkAuth = require("./middleware/check-auth");
+
 
 module.exports = function(app) {
 
@@ -14,40 +16,40 @@ module.exports = function(app) {
     const search = require("./services/g-search.service");
 
     //Concepts
-    app.post("/api/concepts", concept.addConcept);
+    app.post("/api/concepts", checkAuth, concept.addConcept);
     
     
-    app.get('/api/concepts', concept.getConcepts);
+    app.get('/api/concepts', checkAuth, concept.getConcepts);
      
-    app.delete("/api/concepts/:id", concept.deleteConcept);
+    app.delete("/api/concepts/:id", checkAuth, concept.deleteConcept);
 
-    app.put("/api/concepts/:id", concept.editConcept);
+    app.put("/api/concepts/:id", checkAuth, concept.editConcept);
 
 
     //notes
-    app.post("/api/notes", note.addNote);
+    app.post("/api/notes", checkAuth, note.addNote);
     
     
-    app.get('/api/notes/:relatedConcept', note.getNotesByConcept); 
+    app.get('/api/notes/:relatedConcept', checkAuth, note.getNotesByConcept); 
     
     
-    app.delete("/api/notes/:id", note.deleteNote);
+    app.delete("/api/notes/:id", checkAuth, note.deleteNote);
 
-    app.put("/api/notes/:id", note.editNote);
+    app.put("/api/notes/:id", checkAuth, note.editNote);
 
     //learning
 
-    app.get("/api/g-search/:term", search.getResults);
+    app.get("/api/g-search/:term", checkAuth, search.getResults);
 
     //resources
-    app.post("/api/resources", resources.addResources);
+    app.post("/api/resources", checkAuth, resources.addResources);
 
 
-    app.get('/api/resources/:relatedConcept', resources.getResourcesByConcept);
+    app.get('/api/resources/:relatedConcept', checkAuth, resources.getResourcesByConcept);
     
     
-    app.delete("/api/resources/", resources.deleteResources);
+    app.delete("/api/resources/", checkAuth, resources.deleteResources);
 
-    app.put("/api/resources/", resources.editResource);
+    app.put("/api/resources/", checkAuth, resources.editResource);
 
 }
