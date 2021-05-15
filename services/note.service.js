@@ -7,7 +7,8 @@ exports.addNote = (req,res,next) => {
       content:req.body.content,
       source: req.body.source,
       type: req.body.type,
-      relatedConcept: req.body.relatedConcept
+      relatedConcept: req.body.relatedConcept,
+      creator: req.userData.userId
     })
     note.save();
     res.status(201).json({
@@ -36,7 +37,7 @@ exports.editNote = (req,res,next) => {
         source: req.body.source,
         type: req.body.type
       })
-      Note.updateOne({_id: Note.id}, Note, {upsert: true}, function(err, doc) {
+      Note.updateOne({_id: Note.id, creator: req.userData.userId}, Note, {upsert: true}, function(err, doc) {
         if (err) return res.send(500, {error: err});
         return res.send('Succesfully saved.');
     });

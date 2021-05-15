@@ -7,7 +7,7 @@ const conceptSchema = mongoose.Schema({
     lastRecalled:{type: String, default: new Date().toDateString()},
     level:{type:Number, default:0},
     tag:{type:String, default:false},
-
+    creator:{type: mongoose.Schema.Types.ObjectId, ref: "User", required:true}
 
 })
 
