@@ -2,9 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const env = require('./env.js');
-
-require('dotenv').config();
-
+const path = require('path');
 
 const app = express();
 
@@ -29,6 +27,7 @@ mongoose.connect(`${uri}`)
     });
 
 app.use(bodyParser.json());
+app.use("/", express.static(path.join(__dirname, "kbase")));
 
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin', "*");
@@ -43,6 +42,10 @@ app.use((req,res,next) => {
 // routes ==================================================
 require('./routes')(app); // pass our application into our routes
 require('./user')(app); // pass our application into our routes
+
+app.use((req,res, next) => {
+    res.sendFile(path.join(__dirname, "kbase","index.html"));
+});
 
 
 
