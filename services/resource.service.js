@@ -49,7 +49,6 @@ exports.editResource = (req,res,next) => {
 
 
 exports.deleteResources = (req, res, next) => {
-    console.dir(req.body);
     req.body.forEach( resourceId => {
         Resource.deleteOne({id:resourceId.id}, function (err) {
             if(err) console.log(err);

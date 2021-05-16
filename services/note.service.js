@@ -19,7 +19,6 @@ exports.addNote = (req,res,next) => {
 exports.getNotesByConcept =  (req,res,next)=> {
     Note.find({"relatedConcept" : req.params.relatedConcept})
     .then((documents) => {
-        console.log(documents);
 
         res.status(200).json({
             message:"Note have been fetched",
@@ -46,7 +45,7 @@ exports.editNote = (req,res,next) => {
 
 
 exports.deleteNote = (req, res, next) => {
-    console.log("in delete");
+
     Concept.deleteOne({id:req.body.id}, function (err) {
         if(err) console.log(err);
         console.log("Successful deletion");

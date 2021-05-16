@@ -33,32 +33,9 @@ exports.getResults = async (req, res) => {
         
       
     } catch(e) {
-      console.log({e});
+    
     }
   
 
 }
 
-// (async () => {
-//     const focusedResults = []
-//     const focus = 'spiderman';
-//     try {
-//         const searchUrl = `https://customsearch.googleapis.com/customsearch/v1?q=${focus}&cx=${id}&key=${key}`;
-//         console.log(`key is ${key}`);
-//         const focusedResults = [];
-//         const results = await (await fetch(searchUrl).json());
-        
-//         for(let r = 0; r<results.length - 1; r++) 
-//             focusedResults.push({
-//                 title: results[r].title,
-//                 source: results[r].displayLink,
-//                 link: results[r].link,
-//                 content: results[r].snippet
-//             })
-          
-      
-//     } catch(e) {
-//       console.log({e});
-//     }
-  
-//  })();
