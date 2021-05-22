@@ -5,14 +5,15 @@ exports.addConcept = (req,res,next) => {
       title:req.body.title,
       necessity: req.body.necessity, 
       level: req.body.level,
-      tag: req.body.tag
+      tag: req.body.tag,
+      creator: req.userData.userId
     })
     concept.save();
     res.status(201).json(concept);
 }
  
 exports.getConcepts =  (req,res,next)=> {
-    Concept.find()
+    Concept.find({creator: req.userData.userId})
     .then((documents) => {
         res.status(200).json({
             message:"Concept has been fetched",
@@ -23,7 +24,7 @@ exports.getConcepts =  (req,res,next)=> {
 
 
 exports.editConcept = (req,res,next) => {
-    console.dir(req.body);
+
     const concept = new Concept({
         _id: req.body._id,
         title:req.body.title,
@@ -32,22 +33,39 @@ exports.editConcept = (req,res,next) => {
         tag: req.body.tag
 
       })
-       Concept.updateOne({_id: concept.id}, concept, {upsert: true}, function(err, doc) {
-        if (err) return res.send(500, {error: err});
-        return  (
-            res.status(200).json({
-            message:"Concept udpated",
-            concept
-        }));
-    });
+       Concept.updateOne({_id: concept.id, creator: req.userData.userId}, concept).then(
+        result => {
+            if(result.nModified > 0) {
+                return  (
+                    res.status(200).json({
+                    message:"Concept updated",
+                    concept
+                }));
+            } else {
+                return  (
+                    res.status(401).json({
+                    message:"Not Authorized!",
+                }));
+            }
+        });
 }
 
 
 
 exports.deleteConcept = (req, res, next) => {
-    Concept.deleteOne({id:req.body.id}, function (err) {
-        if(err) console.log(err);
-        console.log("Successful deletion");
-      });
-    res.status(200).json({message: "Post deleted!"});
-}
+    Concept.deleteOne({id:req.body.id, creator: req.userData.userId}).then(
+        result => {
+            if(result.n > 0) {
+                return  (
+                    res.status(200).json({
+                    message:"Concept deleted",
+                    concept
+                }));
+            } else {
+                return  (
+                    res.status(401).json({
+                    message:"Not Authorized!",
+                }));
+            }
+        });
+    }

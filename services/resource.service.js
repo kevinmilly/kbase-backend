@@ -9,7 +9,8 @@ exports.addResources = (req,res,next) => {
                 link:element.link,
                 level:element.level,
                 concept: element.concept,
-                type: element.type 
+                type: element.type,
+                creator: req.userData.userId 
               }).save();
     });
     res.status(201).json({
@@ -39,7 +40,7 @@ exports.editResource = (req,res,next) => {
         type: req.body.type,
 
       })
-      Resource.updateOne({_id: Resource.id}, Resource, {upsert: true}, function(err, doc) {
+      Resource.updateOne({_id: Resource.id, creator: req.userData.userId}, Resource, {upsert: true}, function(err, doc) {
         if (err) return res.send(500, {error: err});
         return res.send('Succesfully saved.');
     });
@@ -48,7 +49,6 @@ exports.editResource = (req,res,next) => {
 
 
 exports.deleteResources = (req, res, next) => {
-    console.dir(req.body);
     req.body.forEach( resourceId => {
         Resource.deleteOne({id:resourceId.id}, function (err) {
             if(err) console.log(err);

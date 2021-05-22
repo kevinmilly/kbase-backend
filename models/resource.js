@@ -5,7 +5,7 @@ const resourcetSchema = mongoose.Schema({
     level:{type: Number, default:0},
     concept:{type: String, required:true},
     link: {type: String, required:true},
- 
+    creator:{type: mongoose.Schema.Types.ObjectId, ref: "User", required:true}
     
 
 
