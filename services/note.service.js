@@ -46,9 +46,9 @@ exports.editNote = (req,res,next) => {
 
 exports.deleteNote = (req, res, next) => {
     console.log("in delete");
-    Concept.deleteOne({id:req.body.id}, function (err) {
+    Note.deleteOne({id:req.body.id}, function (err) {
         if(err) console.log(err);
         console.log("Successful deletion");
       });
-    res.status(200).json({message: "Post deleted!"});
+    res.status(200).json({message: "Note deleted!"});
 }

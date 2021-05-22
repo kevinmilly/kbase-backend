@@ -33,7 +33,7 @@ mongoose.connect(`${uri}`)
 
 app.use(bodyParser.json());
 
-app.use("/", express.static(path.join(__dirname, "kbase")));
+// app.use("/", express.static(path.join(__dirname, "kbase")));
 
 app.use((req,res,next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -52,9 +52,9 @@ require('./routes')(app); // pass our application into our routes
 
    //frontend
 
-   app.use((req, res, next) => {
-       res.sendFile(path.join(__dirname, "kbase", "index.html"));
-   })
+//    app.use((req, res, next) => {
+//        res.sendFile(path.join(__dirname, "kbase", "index.html"));
+//    })
 
 
 module.exports = app;
