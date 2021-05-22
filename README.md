@@ -14,9 +14,9 @@
     <br />
     <br />
     <a href="readme-assets/kbase-demo.gif">View Demo</a>
-    
+    .
     <a href="https://github.com/kevinmilly/K-Base-frontend/issues">Report Bug</a>
-    
+    .
     <a href="https://github.com/kevinmilly/K-Base-frontend/issues">Request Feature</a>
   </p>
 </p>
@@ -54,7 +54,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="readme-assets/screenshot.gif" alt="screenshot">
+<img src="readme-assets/screenshot.PNG" alt="screenshot" width="750" height="400">
 
 
 ## Built With
@@ -65,9 +65,9 @@
 * [NodeJS](https://nodejs.org/en/)
 
 
-Depending how you want to get involved, below are some steps if you want to help with development or step
-up your task management game!
+### Getting Started
 
+Depending how you want to get involved, below are some steps if you want to help with development or use learn more effectively.
 
 ### End User Setup
 
