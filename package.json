@@ -24,8 +24,5 @@
     "mongoose-unique-validator": "^2.0.3",
     "node-fetch": "^2.6.1",
     "simple-youtube-api": "^5.2.1"
-  },
-  "engines": {
-    "node": "14.16.0"
   }
 }
