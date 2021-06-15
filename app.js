@@ -1,8 +1,9 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const env = require("./env.js");
-const path = require('path');
+
 
 const app = express();
 
@@ -29,12 +30,14 @@ mongoose.connect(`${uri}`)
 app.use(bodyParser.json());
 app.use("/", express.static(path.join(__dirname, "kbase")));
 
+// app.use("/", express.static(path.join(__dirname, "kbase")));
+
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin', "*");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.setHeader("Access-Control-Allow-Methods",
     "GET,POST,PUT,PATCH,DELETE,OPTIONS"
-    );
+    );y
     next();
 })
 

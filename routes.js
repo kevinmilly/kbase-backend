@@ -52,4 +52,6 @@ module.exports = function(app) {
 
     app.put("/api/resources/", checkAuth, resources.editResource);
 
+ 
+
 }
