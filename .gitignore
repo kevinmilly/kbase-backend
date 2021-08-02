@@ -1,5 +1,5 @@
-.env
-env.js
+# .env
+# env.js
 user.js
 # dependencies
 node_modules/
