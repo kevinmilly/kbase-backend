@@ -1,6 +1,6 @@
 # .env
-# env.js
-# user.js
+env.js
+user.js
 # dependencies
 node_modules/
 logs/
